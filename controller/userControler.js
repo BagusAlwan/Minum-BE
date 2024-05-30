@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler");
 const validateMongoId = require('../utils/validateMongoId');
 const { generateRefreshToken } = require('../config/refreshToken');
 const jwt = require('jsonwebtoken');
+
+
 //Create a user
 const createUser = asyncHandler(async (req, res) => {
     const email = req.body.email;
@@ -144,41 +146,14 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 })
 
-const blockUser = asyncHandler(async(req, res) => {
-    const {id} = req.params
-    validateMongoId(id);
-    try {
-        const block = await User.findByIdAndUpdate(id,
-            {
-                isBlocked: true
-            },
-            {
-                new:true,
-            });
-            res.json({
-                message: "User blocked",
-            })
-    } catch (error) {
-        throw new Error(error)
-    }
-})
 
-const unblockUser = asyncHandler(async(req, res) => {
-    const {id} = req.params
-    validateMongoId(id);
-    try {
-        const unblock = await User.findByIdAndUpdate(id,
-            {
-                isBlocked: false
-            },
-            {
-                new:true,
-            });
-            res.json({
-                message: "User unblocked",
-            })
-    } catch (error) {
-        throw new Error(error)
-    }
-})
-module.exports = { createUser, loginUser, getAllUser, getUser, deleteUser, updateUser, blockUser, unblockUser, handleRefreshToken, logout };
+
+
+
+
+
+//Getting sensor data
+
+
+
+module.exports = { createUser, loginUser, getAllUser, getUser, deleteUser, updateUser, handleRefreshToken, logout };

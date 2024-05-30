@@ -20,13 +20,16 @@ var userSchema = new mongoose.Schema({
         type:String,
         default:"user",
     },
-    isBlocked: {
-        type:Boolean,
-        default: false,
+    address: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Location"
     },
-    address: [{type: mongoose.Schema.Types.ObjectId, ref: "Address"}],
     refreshToken: {
         type: String
+    },
+    device: {
+        type:Boolean,
+        default: false,
     }
 }, {
     timestamps: true,
